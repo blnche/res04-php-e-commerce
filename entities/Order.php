@@ -46,5 +46,14 @@ class Order {
 		$order->setId($assoc['id']);
 		return $order;
 	}
+	// another static utility from hell
+	public static function createInstancesArrFromAssocArr(array $arr) : array {
+		$orders = [];
+		foreach($arr as $i) {
+			$order = Order::createInstanceFromAssoc($i);
+			array_push($orders,$order);
+		}
+		return $orders;
+	}
 }
 
