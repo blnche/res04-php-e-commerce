@@ -1,63 +1,72 @@
-// $data :: ARRAY
-// $data indexes -> 'categories' 'products' (?)'category_selected'
+<!--
+$data :: ARRAY
+// $data keys -> 'categories' 'products' (?)'category_selected'
 // (?) <=> peut être null
+-->
 
-   <section class="container" aria-labelledby="title-products">
-      <h2 id="title-products">Produits</h2>
-      <aside>
-         <h3>Catégories</h3>
-         <nav>
-            <ul>
-               <li></li>
-               <?php foreach ($data['categories'] as $cat) { ?>
-                  <li>
-                     <?php if ($cat->getId() === $data['category_selected']->getId()) {
-                        $select = 'select';
-                     } else {
-                        $select = '';
-                     } ?>
-                     <a href="?route=products&category_id=<?= $cat->getId(); ?>" class="<?= $select ?>">
-                        <?= $cat->getName(); ?>
-                     </a>
-                  </li>
-               <?php } ?>
-            </ul>
-         </nav>
-      </aside>
-      <section aria-labelledby="title-cat">
-         <h3 id="title-cat">dans <?= $data['category_selected']->getName() ?? 'Tous' ?></h3>
-         <div>
-            <ul>
-               <?php foreach ($data['products'] as $product) { ?>
-                  <li>
-                     <article class="product-card">
-                        <div>
-                           <img src="<?= $product->getImage(); ?>" alt="image de <?= $product->getName(); ?>">
-                           <h3><?= $product->getName(); ?></h3>
-                           <p class="">
-                              <?= $product->getDescription(); ?>
-                           </p>
-                           <b class="price">
-                              <?= $product->getPrice(); ?>
-                           </b>
-                        </div>
-                        <input type="checkbox" name="<?= $product->getId(); ?>" id="">
-                     </article>
-                  </li>
-               <?php } ?>
-            </ul>
-         </div>
-      </section>
-      <form action="" method="POST">
-         <section aria-labelledby="title-cart">
-            <h3 id="title-cart">Panier</h3>
-            <ul id="cart">
-
-            </ul>
-         </section>
-         <div>
-
-         </div>
-         <button type="submit"></button>
-      </form>
+<section class="container" aria-labelledby="title-products">
+   <h2 id="title-products">Produits</h2>
+   <aside>
+      <h3>Catégories</h3>
+      <nav>
+         <ul>
+            <li></li>
+            <?php foreach ($data['categories'] as $cat) { ?>
+               <li>
+                  <?php if ($cat->getId() === $data['category_selected']->getId()) {
+                     $select = 'select';
+                  } else {
+                     $select = '';
+                  } ?>
+                  <a href="?route=products&category_id=<?= $cat->getId(); ?>" class="<?= $select ?>">
+                     <?= $cat->getName(); ?>
+                  </a>
+               </li>
+            <?php } ?>
+         </ul>
+      </nav>
+   </aside>
+   <section aria-labelledby="title-cat">
+      <h3 id="title-cat">dans <?= $data['category_selected']->getName() ?? 'Tous' ?></h3>
+      <div id="categories">
+         <ul>
+            <?php foreach ($data['products'] as $product) { ?>
+               <li>
+                  <article class="product-card">
+                     <div>
+                        <img src="<?= $product->getImage(); ?>" alt="image de <?= $product->getName(); ?>">
+                        <h3><?= $product->getName(); ?></h3>
+                        <p class="">
+                           <?= $product->getDescription(); ?>
+                        </p>
+                        <b class="price">
+                           <?= $product->getPrice(); ?>
+                        </b>
+                     </div>
+                     <input type="checkbox" name="product-<?= $product->getId(); ?>" id="">
+                  </article>
+               </li>
+            <?php } ?>
+         </ul>
+      </div>
    </section>
+
+   <!-- order creation form -->
+   <form action="" method="POST" aria-label="">
+      <section aria-labelledby="title-cart">
+         <h3 id="title-cart">Panier</h3>
+         <ul id="cart">
+
+         </ul>
+      </section>
+      <div id="cart-products-id">
+
+      </div>
+      <button type="submit"></button>
+   </form>
+</section>
+
+<!-- à mettre dans le js -->
+<script>
+   const categories = document.getElementById('categories');
+</script>
