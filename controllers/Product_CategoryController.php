@@ -8,7 +8,7 @@
         {
             $products_categories_list = $this->manager->getAllProductsCategories();
             
-            $this->render("products/read-products", $products_categories_list)
+            $this->render("products/read-products", $products_categories_list);
         }
     }
 ?>

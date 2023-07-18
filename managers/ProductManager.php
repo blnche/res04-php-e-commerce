@@ -4,7 +4,6 @@
     
     class ProductManager extends AbstractManager
     {
-        //mysql
         private UserManager $manager;
         
         public function __construct (UserManager $manager)
