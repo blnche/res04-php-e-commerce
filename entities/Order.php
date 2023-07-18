@@ -9,7 +9,7 @@ class Order {
 		$this->user_id = $user_id;
 		$this->order_date = $order_date;
 		$this->address = $address;
-		$this->id = null
+		$this->id = null;
 	}
 	public function getId() : ?int {
 		return $this->id;
@@ -20,7 +20,7 @@ class Order {
 	public function getOrder_date() : string {
 		return $this->order_date;
 	}
-	public function getAddress() : string; {
+	public function getAddress() : string {
 		return $this->address;
 	}
 
