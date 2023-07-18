@@ -24,7 +24,20 @@
             ];
             $query->execute($parameters);
             
-            $products_list = $query->fetchAll(PDO::FETCH_ASSOC);
+            $products = $query->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach($products as $product)
+            {
+                $new_product = new Product (
+                    $result["name"],
+                    $result["description"],
+                    $result["price"],
+                    $result["image"],
+                    $result["category"]
+                );
+                
+                $products_list[] = $new_product;
+            }
             
             return $products_list;
         }

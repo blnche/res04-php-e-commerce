@@ -23,7 +23,7 @@
             return $all_products_categories;
         }
         
-        public function getProductCategoryById (int $id) : int
+        public function getProductCategoryById (int $id) : Product_Category
         {
             $query = $this->db->prepare("
                 SELECT *
@@ -38,7 +38,11 @@
             
             $result = $query->fetch(PDO::FETCH_ASSOC);
             
-            return $result["id"];
+            $product_category = new Product_Category (
+                $result["name"]
+            );
+            
+            return $product_category;
         }
     }
 ?>

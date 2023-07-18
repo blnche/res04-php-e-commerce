@@ -17,7 +17,7 @@
                     $this->render("order/order-products", $products_list);
                 }
             }
-            $this->render("find-products-by-category", []);
+            $this->render("order/order-products", []);
         }
     }
 ?>
