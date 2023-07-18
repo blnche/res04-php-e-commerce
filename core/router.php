@@ -1,6 +1,6 @@
 <?php 
 if(isset($_GET["route"])){
-    
+    $route = $_GET["route"];
     if($route === "user-register")
     {
         $userController->register();
