@@ -14,7 +14,15 @@
             $query->execute();
             $all_products_categories = $query->fetchAll(PDO::FETCH_ASSOC);
             
-            return $all_products_categories;
+            foreach($all_products_categories as $product_category)
+            {
+                $new_product_category = new Product_Category(
+                     $product_category["name"]
+                );   
+                $list_product_category[] = $new_product_category;
+            }
+            
+            return $list_product_category;
         }
         
         public function getProductCategoryById(int $id) : Product_Category
@@ -35,6 +43,8 @@
             $product_category = new Product_Category (
                 $result["name"]
             );
+            
+            $product_category->setId(["id"]);
             
             return $product_category;
         }
