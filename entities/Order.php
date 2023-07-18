@@ -36,6 +36,7 @@ class Order {
 	public function setAddress(string $address) : void {
 		$this->address = $address;
 	}
+	// static utility method from hell
 	public static function createInstanceFromAssoc(array $assoc) : Order {
 		$order = new Order(
 			$assoc['user_id'],

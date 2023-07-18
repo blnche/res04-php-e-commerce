@@ -23,8 +23,10 @@ class OrderManager extends AbstractManager {
 		$query->execute($parameters);
 		$results = $query->fetchAll(PDO::FETCH_ASSOC);
 		$orders = [];
-		foreach($results as $assoc) {
-			
+		foreach($results as $res) {
+			$order = Order::createInstanceFromAssoc($res);
+			array_push($orders,$order);
 		}
+		return $orders;
 	}	
 }
