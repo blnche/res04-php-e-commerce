@@ -36,5 +36,14 @@ class Order {
 	public function setAddress(string $address) : void {
 		$this->address = $address;
 	}
+	public static function createInstanceFromAssoc(array $assoc) : Order {
+		$order = new Order(
+			$assoc['user_id'],
+			$assoc['order_date'],
+			$assoc['address']
+		);
+		$order->setId($assoc['id']);
+		return $order;
+	}
 }
 
