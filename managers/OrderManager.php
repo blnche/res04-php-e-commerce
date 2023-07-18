@@ -22,11 +22,7 @@ class OrderManager extends AbstractManager {
 		];
 		$query->execute($parameters);
 		$results = $query->fetchAll(PDO::FETCH_ASSOC);
-		$orders = [];
-		foreach($results as $res) {
-			$order = Order::createInstanceFromAssoc($res);
-			array_push($orders,$order);
-		}
+		$orders = Order::createInstancesArrFromAssocArr($results);
 		return $orders;
 	}
 	public function getOrdersByAddress_id(int $address_id) : array {
@@ -38,12 +34,22 @@ class OrderManager extends AbstractManager {
 		];
 		$query->execute($parameters);
 		$results = $query->fetchAll(PDO::FETCH_ASSOC);
-		$orders = [];
-		foreach($results as $res) {
-			$order = Order::createInstanceFromAssoc($res);
-			array_push($orders,$order);
-		}
+		$orders = Order::createInstancesArrFromAssocArr($results);
 		return $orders;
 	}
 
+	public function getLastOrdersSortedByOrder_date(int $n = 10) : array {
+		$query = $this->db->prepare('
+			SELECT * FROM orders 
+			ORDER BY order_date DESC 
+			LIMIT :n
+		');
+		$parameters = [
+			'n' => $n
+		];
+		$query->execute($parameters);
+		$results = $query->fetchAll(PDO::FETCH_ASSOC);
+		$orders = Order::createInstancesArrFromAssocArr($results);
+		return $orders;
+	}
 }
