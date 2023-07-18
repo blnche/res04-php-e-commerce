@@ -1,46 +1,50 @@
 // $data :: ARRAY
-// $data indexes -> 'categories' 'products' (?)'category_id'
+// $data indexes -> 'categories' 'products' (?)'category_selected'
 // (?) <=> peut être null
 
-   <div class="container">
+   <section class="container" aria-labelledby="title-products">
+      <h2 id="title-products">Produits</h2>
       <aside>
+         <h3>Catégories</h3>
          <nav>
-            <form action="" method="GET" id="categories-form">
-               <ul>
-                  <?php foreach ($data['categories'] as $cat) { ?>
-                     <li>
-                        <?php if ($cat->getId() === $category_id) {
-                           $select = 'select';
-                        } else {
-                           $select = '';
-                        } ?>
-                        <label for="">
-                           <span class="<?= $select ?>"><?= $cat->getName(); ?></span>
-                           <input type="checkbox" name="<?= $cat->getId(); ?>">
-                        </label>
-                     </li>
-                  <?php } ?>
-               </ul>
-            </form>
+            <ul>
+               <li></li>
+               <?php foreach ($data['categories'] as $cat) { ?>
+                  <li>
+                     <?php if ($cat->getId() === $data['category_selected']->getId()) {
+                        $select = 'select';
+                     } else {
+                        $select = '';
+                     } ?>
+                     <a href="?route=products&category_id=<?= $cat->getId(); ?>" class="<?= $select ?>">
+                        <?= $cat->getName(); ?>
+                     </a>
+                  </li>
+               <?php } ?>
+            </ul>
          </nav>
       </aside>
-      <section aria-labelledby="title-products">
-         <h2 id="title-products">Products</h2>
+      <section aria-labelledby="title-cat">
+         <h3 id="title-cat">dans <?= $data['category_selected']->getName() ?? 'Tous' ?></h3>
          <div>
             <ul>
-               <li>
-                  <article class="product-card" id="product-">
-                     <div>
-                        <img src="" alt="">
-                        <h3></h3>
-                        <p class="">
-
-                        </p>
-                        <b class="price"></b>
-                     </div>
-                     <input type="checkbox" name="" id="">
-                  </article>
-               </li>
+               <?php foreach ($data['products'] as $product) { ?>
+                  <li>
+                     <article class="product-card">
+                        <div>
+                           <img src="<?= $product->getImage(); ?>" alt="image de <?= $product->getName(); ?>">
+                           <h3><?= $product->getName(); ?></h3>
+                           <p class="">
+                              <?= $product->getDescription(); ?>
+                           </p>
+                           <b class="price">
+                              <?= $product->getPrice(); ?>
+                           </b>
+                        </div>
+                        <input type="checkbox" name="<?= $product->getId(); ?>" id="">
+                     </article>
+                  </li>
+               <?php } ?>
             </ul>
          </div>
       </section>
@@ -56,20 +60,4 @@
          </div>
          <button type="submit"></button>
       </form>
-   </div>
-
-
-   // mettre ça dans le js, ça sert à envoyer une requete get pour refresh les produits quand
-   // l'utilisateur clique sur une catégorie dans l'aside
-   // potentiellement défaillant (jai pas testé mdr)
-   <script>
-      window.addEventListener('DOMContentLoaded', () => {
-         const categoriesForm = document.getElementById('categories-form');
-         const categoriesOptions = categoriesForm.querySelectorAll('input[type=checkbox]');
-         categoriesOptions.forEach(catOption => {
-            catOption.addEventListener('click', () => {
-               categoriesForm.submit();
-            }, true)
-         })
-      })
-   </script>
+   </section>
