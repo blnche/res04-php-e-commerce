@@ -20,8 +20,8 @@ class Order {
 	public function getOrder_date() : string {
 		return $this->order_date;
 	}
-	public function getAddress() : string {
-		return $this->address;
+	public function getAddress_id() : string {
+		return $this->address_id;
 	}
 
 	public function setId(int $id) : void {
