@@ -5,7 +5,7 @@
         private ?int $id;
         private string $name;
         
-        public function __construct()
+        public function __construct(string $name)
         {
             $this->id = null;
             $this->name = $name;
