@@ -1,28 +1,27 @@
 <?php
-    
-    abstract class AbstractManager
+
+abstract class AbstractManager
+{
+    protected PDO $db;
+
+    private string $dbName;
+    private string $port;
+    private string $host;
+    private string $username;
+    private string $password;
+
+    public function __construct()
     {
-        protected PDO $db;
-        
-        private string $dbName;
-        private string $port;
-        private string $host;
-        private string $username;
-        private string $password;
-        
-        public function __construct (string $dbName, string $port, string $host, string $username, string $password)
-        {
-            $this->dbName = $dbName;
-            $this->port = $port;
-            $this->host = $host;
-            $this->username = $username;
-            $this->password = $password;
-            $this->db = new PDO (
-                "mysql:host=$host;port=$port;dbname=$dbName",
-                $username,
-                $password
-                );
-        }
+        $this->dbName = "blanchepeltier_e-commerce";
+        $this->port = "3306";
+        $this->host = "db.3wa.io";
+        $this->username = "blanchepeltier";
+        $this->password = "6df6213ed1bccc46589270829cdb7338";
+
+        $this->db = new PDO(
+            "mysql:host=$this->host;port=$this->port;dbname=$this->dbName",
+            $this->username,
+            $this->password
+        );
     }
-    
-?>
+}
