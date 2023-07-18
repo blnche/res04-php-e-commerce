@@ -1,6 +1,9 @@
 <?php
 
-class UserManager extends AbstractManager {
+
+    require_once "AbstractManager.php";
+
+   class UserManager extends AbstractManager {
 
    public function getAllUsers() : array {
       $query = $this->db->prepare('SELECT * FROM users');

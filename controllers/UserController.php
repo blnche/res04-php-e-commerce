@@ -1,5 +1,7 @@
 <?php
 
+  require_once "AbstractController.php";
+  
 class UserController extends AbstractController
 {
     private UserManager $userManager;
