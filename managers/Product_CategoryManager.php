@@ -5,7 +5,7 @@
     class Product_CategoryManager extends AbstractManager
     {
         
-        public function getAllProductCategories() : array
+        public function getAllProductsCategories() : array
         {
             $query = $this->db->prepare("
                 SELECT *
