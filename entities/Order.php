@@ -4,11 +4,11 @@ class Order {
 	private ?int $id;
 	private int $user_id;
 	private string $order_date;
-	private string $address;
-	public function __construct($user_id,$order_date,$address) {
+	private string $address_id;
+	public function __construct($user_id,$order_date,$address_id) {
 		$this->user_id = $user_id;
 		$this->order_date = $order_date;
-		$this->address = $address;
+		$this->address_id = $address_id;
 		$this->id = null;
 	}
 	public function getId() : ?int {
@@ -33,8 +33,8 @@ class Order {
 	public function setOrder_date(string $order_date) : void {
 		$this->order_date = $order_date;
 	}
-	public function setAddress(string $address) : void {
-		$this->address = $address;
+	public function setAddress_id(int $address_id) : void {
+		$this->address_id = $address_id;
 	}
 	// static utility method from hell
 	public static function createInstanceFromAssoc(array $assoc) : Order {
