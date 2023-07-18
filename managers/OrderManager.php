@@ -28,5 +28,22 @@ class OrderManager extends AbstractManager {
 			array_push($orders,$order);
 		}
 		return $orders;
-	}	
+	}
+	public function getOrdersByAddress_id(int $address_id) : array {
+		$query = $this->db->prepare('
+			SELECT * FROM orders WHERE address_id = :address_id
+		');
+		$parameters = [
+			'address_id' => $address_id
+		];
+		$query->execute($parameters);
+		$results = $query->fetchAll(PDO::FETCH_ASSOC);
+		$orders = [];
+		foreach($results as $res) {
+			$order = Order::createInstanceFromAssoc($res);
+			array_push($orders,$order);
+		}
+		return $orders;
+	}
+
 }
