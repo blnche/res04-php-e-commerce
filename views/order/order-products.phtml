@@ -1,0 +1,75 @@
+// $data :: ARRAY
+// $data indexes -> 'categories' 'products' (?)'category_id'
+// (?) <=> peut être null
+
+   <div class="container">
+      <aside>
+         <nav>
+            <form action="" method="GET" id="categories-form">
+               <ul>
+                  <?php foreach ($data['categories'] as $cat) { ?>
+                     <li>
+                        <?php if ($cat->getId() === $category_id) {
+                           $select = 'select';
+                        } else {
+                           $select = '';
+                        } ?>
+                        <label for="">
+                           <span class="<?= $select ?>"><?= $cat->getName(); ?></span>
+                           <input type="checkbox" name="<?= $cat->getId(); ?>">
+                        </label>
+                     </li>
+                  <?php } ?>
+               </ul>
+            </form>
+         </nav>
+      </aside>
+      <section aria-labelledby="title-products">
+         <h2 id="title-products">Products</h2>
+         <div>
+            <ul>
+               <li>
+                  <article class="product-card" id="product-">
+                     <div>
+                        <img src="" alt="">
+                        <h3></h3>
+                        <p class="">
+
+                        </p>
+                        <b class="price"></b>
+                     </div>
+                     <input type="checkbox" name="" id="">
+                  </article>
+               </li>
+            </ul>
+         </div>
+      </section>
+      <form action="" method="POST">
+         <section aria-labelledby="title-cart">
+            <h3 id="title-cart">Panier</h3>
+            <ul id="cart">
+
+            </ul>
+         </section>
+         <div>
+
+         </div>
+         <button type="submit"></button>
+      </form>
+   </div>
+
+
+   // mettre ça dans le js, ça sert à envoyer une requete get pour refresh les produits quand
+   // l'utilisateur clique sur une catégorie dans l'aside
+   // potentiellement défaillant (jai pas testé mdr)
+   <script>
+      window.addEventListener('DOMContentLoaded', () => {
+         const categoriesForm = document.getElementById('categories-form');
+         const categoriesOptions = categoriesForm.querySelectorAll('input[type=checkbox]');
+         categoriesOptions.forEach(catOption => {
+            catOption.addEventListener('click', () => {
+               categoriesForm.submit();
+            }, true)
+         })
+      })
+   </script>
