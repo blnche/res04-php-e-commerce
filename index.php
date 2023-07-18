@@ -5,6 +5,7 @@
     $username = "blanchepeltier";
     $password = "6df6213ed1bccc46589270829cdb7338";
     
+    
      require "entities/Address.php";
      require "entities/Order.php";
      require "entities/Product.php";
@@ -23,7 +24,7 @@
     require "controllers/UserController.php";
     
     
-    
-    $manager = new UserManager ($dbName, $port, $host, $username, $password);
+    $userController = new UserController();
+    require "core/router.php";
     
 ?>

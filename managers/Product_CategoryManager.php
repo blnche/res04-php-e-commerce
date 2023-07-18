@@ -2,7 +2,7 @@
 
     require_once "AbstractManager.php";
     
-    class ProductManager extends AbstractManager
+    class Product_CategoryManager extends AbstractManager
     {
         private UserManager $manager;
         

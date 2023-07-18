@@ -1,32 +1,34 @@
 <?php 
-
-if($route === "user-register")
-{
-    $userController->register();
-}
-else if($route === "user-login" )
-{
-     $userController->login();
-}
-else if($route === "user-logout" )
-{
-    $userController->logout();
-}
-else if($route === "" )
-{
+if(isset($_GET["route"])){
     
-}
-else if($route === "")
-{
-    
-}
-else if($route === "")
-{
-    
-}
-else if($route === "")
-{
-    
+    if($route === "user-register")
+    {
+        $userController->register();
+    }
+    else if($route === "user-login" )
+    {
+         $userController->login();
+    }
+    else if($route === "user-logout" )
+    {
+        $userController->logout();
+    }
+    else if($route === "" )
+    {
+        
+    }
+    else if($route === "")
+    {
+        
+    }
+    else if($route === "")
+    {
+        
+    }
+    else if($route === "")
+    {
+        
+    }
 }
 else
 {
