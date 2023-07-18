@@ -10,7 +10,7 @@ $data :: ARRAY
       <h3>Catégories</h3>
       <nav> <!-- choix de la catgorie de produit -->
          <ul>
-            <li></li>
+            <li><a href="?route=products&category_id=">Toutes</a></li>
             <?php foreach ($data['categories'] as $cat) { ?>
                <li>
                   <?php if ($cat->getId() === $data['category_selected']->getId()) {
