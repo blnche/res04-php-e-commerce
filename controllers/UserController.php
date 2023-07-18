@@ -58,7 +58,5 @@ class UserController extends AbstractController
             exit();
         }
     }
-    public function account()
-    {
-    }
+    
 }
