@@ -8,7 +8,7 @@ $data :: ARRAY
    <h2 id="title-products">Produits</h2>
    <aside>
       <h3>Catégories</h3>
-      <nav>
+      <nav> <!-- choix de la catgorie de produit -->
          <ul>
             <li></li>
             <?php foreach ($data['categories'] as $cat) { ?>
@@ -52,16 +52,13 @@ $data :: ARRAY
    </section>
 
    <!-- order creation form -->
-   <form action="" method="POST" aria-label="">
+   <form action="?route=order-create" method="POST" aria-label="" id="order-create">
       <section aria-labelledby="title-cart">
          <h3 id="title-cart">Panier</h3>
          <ul id="cart">
 
          </ul>
       </section>
-      <div id="cart-products-ids">
-
-      </div>
       <button type="submit"></button>
    </form>
 </section>
@@ -71,13 +68,36 @@ $data :: ARRAY
    const products = document.getElementById('products');
    const productsCheckboxes = products.querySelectorAll('input[type="checkbox"]');
    const cart = document.getElementById('cart');
+   const createOrderForm = document.querySelector('form#order-create');
+   const productsInCart = [];
+
+   function populateCart(productsInCart) {
+      productsInCart.forEach(product => {
+         const li = document.createElement('li');
+         li.innerText = product.name;
+         cart.appendChild(li);
+         const hiddenFormValue = document.createElement('input');
+         // met chaque product_id dans le meme tableau itérable coté back dans $_POST['products_ids']
+         hiddenFormValue.setAttribute('type','hidden');
+         hiddenFormValue.setAttribute('name','products_ids[]');
+         hiddenFormValue.setAttribute('value',product.id);
+      });
+   }
+
    productsCheckboxes.forEach(productCheck => {
-      productCheck.addEventListener('click', () => {
+      productCheck.addEventListener('click', (e) => {
          if (e.target.checked === false) {
             e.target.checked = true;
-            const li = document.createElement('li');
-            const idHolder = document.createElement('input');
-            li.innerText = 
+            const product = {name: e.target.getAttribute('name'), id: e.target.getAttribute('id')};
+            productsInCart.push(product);   
+            populateCart(productsInCart);      
+         }
+         else {
+            e.target.checked = false;
+            const product = {name: e.target.getAttribute('name'), id: e.target.getAttribute('id')};
+            let index = productsInCart.indexOf(product);
+            productsInCart.splice(index, 1);
+            populateCart(productsInCart);
          }
       })
    })
