@@ -1,6 +1,6 @@
 <?php
 
-class User extends AbstractModel
+class User 
 
 {
     private ?int $id;
@@ -9,7 +9,7 @@ class User extends AbstractModel
     private string $password;
     public function __construct(string $username, string $email, string $password)
     {
-        AbstractModel::__construct();
+        
         
         $this->username = $username;
         $this->email = $email;
@@ -19,7 +19,7 @@ class User extends AbstractModel
     
     
       
-    public function getId() : int
+    public function getId() : ?int
     {
         return $this->id;
     }
@@ -37,7 +37,7 @@ class User extends AbstractModel
         return $this->email;
     }
     
-    public function setId(int $id) : void
+    public function setId(?int $id) : void
     {
         $this->id = $id;
     }

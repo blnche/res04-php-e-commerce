@@ -24,11 +24,11 @@
             foreach($products as $product)
             {
                 $new_product = new Product (
-                    $result["name"],
-                    $result["description"],
-                    $result["price"],
-                    $result["image"],
-                    $result["category"]
+                    $product["name"],
+                    $product["description"],
+                    $product["price"],
+                    $product["image"],
+                    $product["category"]
                 );
                 
                 $products_list[] = $new_product;
@@ -55,11 +55,11 @@
             foreach($products as $product)
             {
                 $new_product = new Product (
-                    $result["name"],
-                    $result["description"],
-                    $result["price"],
-                    $result["image"],
-                    $result["category"]
+                    $product["name"],
+                    $product["description"],
+                    $product["price"],
+                    $product["image"],
+                    $product["category"]
                 );
                 
                 $products_list[] = $new_product;

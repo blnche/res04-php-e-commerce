@@ -4,6 +4,10 @@
     
     class Product_CategoryController extends AbstractController
     {
+        private UserManager $manager ;
+        public function __construct(){
+            $this->manager = new UserManager($dbName, $port, $host, $username, $password);
+        }
         public function productCategoriesIndex()
         {
             if(isset($_GET["category_id"]))
