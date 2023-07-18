@@ -13,7 +13,7 @@
 
 <body>
    <?php if (isset($_SESSION["user_id"])) { ?>
-      <header class="global-header">
+      <header class="">
          <div>
             <a href="index.php?route=categories">Categories</a>
             <!--modifier la route..-->
@@ -23,12 +23,7 @@
             <nav>
                <ul>
                   <li><a href="index.php?route=user-logout">Log out</a></li>
-                  <li>
-                     <div class="form-check form-check-reverse form-switch">
-                        <input class="form-check-input" type="checkbox" id="toggleSwitchDarkMode" role="switch">
-                        <label for="toggleSwitchDarkMode" class="form-check-label">Dark Mode</label>
-                     </div>
-                  </li>
+                 
                </ul>
             </nav>
          </div>
