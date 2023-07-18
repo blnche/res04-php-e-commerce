@@ -13,8 +13,8 @@
             global $host;
             global $username;
             global $password;
-            $this->productManager = new ProductManager($dbName, $port, $host, $username, $password);
-            $this->product_CategoryManager = new Product_CategoryManager($dbName, $port, $host, $username, $password);
+            $this->productManager = new ProductManager();
+            $this->product_CategoryManager = new Product_CategoryManager();
         }
         public function productCategoriesIndex()
         {

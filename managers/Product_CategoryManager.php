@@ -4,14 +4,8 @@
     
     class Product_CategoryManager extends AbstractManager
     {
-        private UserManager $manager;
         
-        public function __construct (UserManager $manager)
-        {
-            $this->manager = $manager;
-        }
-        
-        public function getAllProductCategories () : array
+        public function getAllProductCategories() : array
         {
             $query = $this->db->prepare("
                 SELECT *
@@ -23,7 +17,7 @@
             return $all_products_categories;
         }
         
-        public function getProductCategoryById (int $id) : Product_Category
+        public function getProductCategoryById(int $id) : Product_Category
         {
             $query = $this->db->prepare("
                 SELECT *

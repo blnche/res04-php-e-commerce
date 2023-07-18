@@ -4,12 +4,6 @@
     
     class ProductManager extends AbstractManager
     {
-        private UserManager $manager;
-        
-        public function __construct (UserManager $manager)
-        {
-            $this->manager = $manager;
-        }
         
         public function getAllProducts () : array
         {

@@ -10,7 +10,7 @@ class UserController extends AbstractController
     public function __construct()
     {
         global $db;
-        $this->userManager = new UserManager($dbName, $port, $host, $username, $password);
+        $this->userManager = new UserManager();
        
     }
 
