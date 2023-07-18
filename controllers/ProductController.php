@@ -6,7 +6,7 @@
     {
         public function getProductsByCategory ()
         {
-            if ($_SERVER['REQUEST_METHOD'] == 'POST')
+            /*if ($_SERVER['REQUEST_METHOD'] == 'POST')
             {
                 $formName = $_POST["formName"];
                 
@@ -17,7 +17,7 @@
                     $this->render("order/order-products", $products_list);
                 }
             }
-            $this->render("order/order-products", []);
+            $this->render("order/order-products", []);*/
         }
     }
 ?>
