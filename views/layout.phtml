@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Notre Site E-Commerce</title>
+  
+   <link href="" rel="stylesheet" >
+   <script src="" ></script>
+   <link rel="stylesheet" href="assets/styles/css/index.css">
+</head>
+
+<body>
+   <?php if (isset($_SESSION["user_id"])) { ?>
+      <header class="global-header">
+         <div>
+            <a href="index.php?route=categories">Categories</a>
+         </div>
+         <div>
+            <div></div>
+            <nav>
+               <ul>
+                  <li><a href="index.php?route=user-logout">Log out</a></li>
+                  <li>
+                     <div class="form-check form-check-reverse form-switch">
+                        <input class="form-check-input" type="checkbox" id="toggleSwitchDarkMode" role="switch">
+                        <label for="toggleSwitchDarkMode" class="form-check-label">Dark Mode</label>
+                     </div>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+      </header>
+   <?php } ?>
+   <main>
+      <?php require "$template.phtml"; ?>
+   </main>
+   <footer>
+
+   </footer>
+   <script type="module" src="assets/js/main.js"></script>
+</body>
+
+</html>
