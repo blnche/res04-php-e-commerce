@@ -28,7 +28,7 @@ $data :: ARRAY
    </aside>
    <section aria-labelledby="title-cat">
       <h3 id="title-cat">dans <?= $data['category_selected']->getName() ?? 'Tous' ?></h3>
-      <div id="categories">
+      <div id="products">
          <ul>
             <?php foreach ($data['products'] as $product) { ?>
                <li>
@@ -43,7 +43,7 @@ $data :: ARRAY
                            <?= $product->getPrice(); ?>
                         </b>
                      </div>
-                     <input type="checkbox" name="product-<?= $product->getId(); ?>" id="">
+                     <input type="checkbox" name="<?= $product->getName() ?>" id="?= $product->getId(); ?>">
                   </article>
                </li>
             <?php } ?>
@@ -59,7 +59,7 @@ $data :: ARRAY
 
          </ul>
       </section>
-      <div id="cart-products-id">
+      <div id="cart-products-ids">
 
       </div>
       <button type="submit"></button>
@@ -68,5 +68,18 @@ $data :: ARRAY
 
 <!-- à mettre dans le js -->
 <script>
-   const categories = document.getElementById('categories');
+   const products = document.getElementById('products');
+   const productsCheckboxes = products.querySelectorAll('input[type="checkbox"]');
+   const cart = document.getElementById('cart');
+   productsCheckboxes.forEach(productCheck => {
+      productCheck.addEventListener('click', () => {
+         if (e.target.checked === false) {
+            e.target.checked = true;
+            const li = document.createElement('li');
+            const idHolder = document.createElement('input');
+            li.innerText = 
+         }
+      })
+   })
+
 </script>
