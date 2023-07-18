@@ -53,12 +53,13 @@
 	}
    public function insertUser(User $user) : User {
       $query = $this->db->prepare('
-			INSERT INTO users (email, username, password)
-			VALUES (:email, :username, :password)
+			INSERT INTO users (username, email,  password)
+			VALUES (:username, :email,  :password)
 		');
 		$parameters = [
+		   
+		   'username' => $user->getUsername(),
 			'email' => $user->getEmail(),
-			'username' => $user->getUsername(),
 			'password' => password_hash($user->getPassword(),PASSWORD_DEFAULT)
 		];
 		$query->execute($parameters);
