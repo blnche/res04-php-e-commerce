@@ -1,7 +1,7 @@
 <?php
 
     require "managers/AbstractManager.php";
-    $dbName = "blanchepeltier_phpj9";
+    $dbName = "blanchepeltier_e-commerce";
     $port = "3306";
     $host = "db.3wa.io";
     $username = "blanchepeltier";
