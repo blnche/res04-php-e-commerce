@@ -19,6 +19,8 @@
                 $new_product_category = new Product_Category(
                      $product_category["name"]
                 );   
+                $new_product_category->setId($product_category["id"]);
+                
                 $list_product_category[] = $new_product_category;
             }
             
@@ -44,7 +46,7 @@
                 $result["name"]
             );
             
-            $product_category->setId(["id"]);
+            $product_category->setId($result["id"]);
             
             return $product_category;
         }

@@ -24,6 +24,7 @@
                     $product["image"],
                     $product["category"]
                 );
+                $new_product->setId($product["id"]);
                 
                 $products_list[] = $new_product;
             }
@@ -55,6 +56,7 @@
                     $product["image"],
                     $product["category"]
                 );
+                $new_product->setId($product["id"]);
                 
                 $products_list[] = $new_product;
             }
