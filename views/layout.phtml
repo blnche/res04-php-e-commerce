@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Notre Site E-Commerce</title>
+   <link rel="stylesheet" href="assets/styles/css/index.css">
+</head>
+
+<body>
+      <header>
+            <nav>
+               <ul>
+                  <li><a href="index.php?route=user-register">Créer un compte</a></li>
+                  <li><a href="index.php?route=user-login">Se connecter</a></li>
+                  <li><a href="index.php?route=user-past-orders">Mes commandes passées</a></li>
+                  <li><a href="index.php?route=user-logout">Se déconnecter</a></li>
+               </ul>
+            </nav>
+      </header>
+      
+   <main>
+      <?php require "$template.phtml"; ?>
+   </main>
+   
+   <footer>
+   </footer>
+   <script src="assets/js/main.js"></script>
+</body>
+
+</html>
