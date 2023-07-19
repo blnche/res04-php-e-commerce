@@ -13,11 +13,11 @@ if(isset($_GET["route"])){
     {
         $userController->logout();
     }
-    else if($route === "" )
+    else if($route === "order-products" )
     {
-        
+        $product_CategoryController->productCategoriesIndex();
     }
-    else if($route === "")
+    else if($route === "order-create")
     {
         
     }
