@@ -5,11 +5,13 @@
     class OrderController extends AbstractController
     {
         private OrderManager $orderManager;
+        private AddressManager $addressManager;
         
     
         public function __construct()
         {
             $this->orderManager = new OrderManager();
+            $this->addressManager = new AddressManager();
            
         }
         
