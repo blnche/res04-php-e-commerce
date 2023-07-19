@@ -13,9 +13,9 @@ if(isset($_GET["route"])){
     {
         $userController->logout();
     }
-    else if($route === "" )
+    else if($route === "user-past-orders" )
     {
-        
+        $orderController->getOrdersByUser_id();
     }
     else if($route === "")
     {
