@@ -20,7 +20,7 @@
 - Se déconnecter
 
 ## Ce qui n'est pas encore fait :
-- 
+- Les controller & manager pour Address.php -> on souhaite utiliser AddressManager dans OrderController pour afficher les adresses de livraisons pour chaque commandes passées.
 
 # Autres informations :
 Notre router n'est pas en POO (en gros c'est pas comme dans la correction du projet distorsion).
