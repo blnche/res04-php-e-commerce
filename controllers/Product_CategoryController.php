@@ -17,14 +17,14 @@
             {
                 $products_categories_list = $this->product_CategoryManager->getAllProductsCategories();
                 $category_selected = $this->product_CategoryManager->getProductCategoryById($_GET["category_id"]);
-                $products_list = $this->productManager->getProductsByCategoryId($_GET["category_id"]);
+                $products_list = $this->productManager->getProductsByCategoryId((int) $_GET["category_id"]);
                 
                 $this->render("order/order-products", ["categories" => $products_categories_list, "products" => $products_list, "category_selected" => $category_selected]);
             }
             $products_categories_list = $this->product_CategoryManager->getAllProductsCategories();
             $products_list = $this->productManager->getAllProducts();
             
-            $this->render("products/order-products", ["categories" => $products_categories_list, "products" => $products_list, "category_selected" => ""]); 
+            $this->render("order/order-products", ["categories" => $products_categories_list, "products" => $products_list, "category_selected" => ""]); 
         }
     }
 ?>

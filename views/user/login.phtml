@@ -1,23 +1,22 @@
-<div >
-   <h1>Log in</h1>
-   <form action="index.php?route=user-login" method="POST">
-      <!--modifier la route..-->
-      <div >
-         <label  for="email">Email</label>
-         <input type="email"  name="email" id="email" placeholder="Your email">
-      </div>
-      <div >
-         <label  for="password">Password</label>
-         <input type="password"  name="password" id="password" placeholder="Password">
-      </div>
-      <div>
-         <button type="submit" >Log in</button>
-      </div>
-   </form>
-   <p >
-      Don't have an account?
-      <a href="index.php?route=user-register" >
-         <u>Register here</u>
-      </a>
-   </p>
-</div>
+<h1>Se connecter</h1>
+<form action="index.php?route=user-login" method="POST">
+   
+   <fieldset>
+      <label for="email">Email</label>
+      <input type="email"  name="email" id="email" placeholder="Your email">
+   </fieldset>
+   
+   <fieldset>
+      <label for="password">Password</label>
+      <input type="password"  name="password" id="password" placeholder="Password">
+   </fieldset>
+   
+   <input type="submit" value="Se connecter">
+      
+</form>
+<p >
+   Don't have an account?
+   <a href="index.php?route=user-register" >
+      <u>Register here</u>
+   </a>
+</p>

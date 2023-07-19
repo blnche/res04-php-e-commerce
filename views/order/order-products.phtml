@@ -10,15 +10,16 @@ $data :: ARRAY
       <h3>Catégories</h3>
       <nav> <!-- choix de la catgorie de produit -->
          <ul>
-            <li><a href="?route=products&category_id=">Toutes</a></li>
+            <li><a href="?route=order-products">Toutes</a></li>
             <?php foreach ($data['categories'] as $cat) { ?>
                <li>
-                  <?php if ($cat->getId() === $data['category_selected']->getId()) {
-                     $select = 'select';
-                  } else {
-                     $select = '';
-                  } ?>
-                  <a href="?route=products&category_id=<?= $cat->getId(); ?>" class="<?= $select ?>">
+                  <?php $select = '';
+                     if ($data['category_selected'] !== "") {
+                        if ($cat->getId() === $data['category_selected']) {
+                           $select = 'select';  
+                        }else { $select = ''; }
+                  }?>
+                  <a href="?route=order-products&category_id=<?= $cat->getId(); ?>" class="<?= $select ?>">
                      <?= $cat->getName(); ?>
                   </a>
                </li>
@@ -27,7 +28,14 @@ $data :: ARRAY
       </nav>
    </aside>
    <section aria-labelledby="title-cat">
-      <h3 id="title-cat">dans <?= $data['category_selected']->getName() ?? 'Tous' ?></h3>
+      <?php 
+      $title_cat = 'Tous';
+      if($data['category_selected'] !== '') 
+      { 
+         $title_cat = $data['category_selected']->getName(); 
+         
+      } ?>
+      <h3 id="title-cat">dans <?= $title_cat ?></h3>
       <div id="products">
          <ul>
             <?php foreach ($data['products'] as $product) { ?>
@@ -43,7 +51,7 @@ $data :: ARRAY
                            <?= $product->getPrice(); ?>
                         </b>
                      </div>
-                     <input type="checkbox" name="<?= $product->getName() ?>" id="?= $product->getId(); ?>">
+                     <input type="checkbox" name="<?= $product->getName() ?>" id="<?= $product->getId(); ?>">
                   </article>
                </li>
             <?php } ?>
@@ -68,53 +76,11 @@ $data :: ARRAY
             <input class="form-control" type="text" name="address_pays" value="" placeholder="France" id="address_pays">
          </div>
          <label for="address_details"></label>
-         <textarea class="form-control" type="text" name="address_details" value="" placeholder="Ex: 1 rue Dufour" id="address_details">
+         <textarea class="form-control" type="text" 
+                  name="address_details" value="" 
+                  placeholder="Ex: 1 rue Dufour" id="address_details">
+         </textarea>
       </div>
       <button class="btn btn-primary" type="submit">Valider la commande</button>
    </form>
 </section>
-
-<!-- à mettre dans le js -->
-<script>
-   const products = document.getElementById('products');
-   const productsCheckboxes = products.querySelectorAll('input[type="checkbox"]');
-   const cart = document.getElementById('cart');
-   const createOrderForm = document.querySelector('form#order-create');
-   const productsInCart = [];
-
-   function populateCart(productsInCart) {
-      productsInCart.forEach(product => {
-         const li = document.createElement('li');
-         li.innerText = product.name;
-         cart.appendChild(li);
-         const hiddenFormValue = document.createElement('input');
-         // met chaque product_id dans le meme tableau itérable coté back dans $_POST['products_ids']
-         hiddenFormValue.setAttribute('type', 'hidden');
-         hiddenFormValue.setAttribute('name', 'products_ids[]');
-         hiddenFormValue.setAttribute('value', product.id);
-      });
-   }
-
-   productsCheckboxes.forEach(productCheck => {
-      productCheck.addEventListener('click', (e) => {
-         if (e.target.checked === false) {
-            e.target.checked = true;
-            const product = {
-               name: e.target.getAttribute('name'),
-               id: e.target.getAttribute('id')
-            };
-            productsInCart.push(product);
-            populateCart(productsInCart);
-         } else {
-            e.target.checked = false;
-            const product = {
-               name: e.target.getAttribute('name'),
-               id: e.target.getAttribute('id')
-            };
-            let index = productsInCart.indexOf(product);
-            productsInCart.splice(index, 1);
-            populateCart(productsInCart);
-         }
-      })
-   })
-</script>

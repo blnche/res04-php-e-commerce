@@ -1,20 +1,16 @@
-<div>
-    <h1>Liste de vos commandes</h1>
-    <form action="index.php?route=orders" method="POST">
-        <!--modifier la route..-->
-     <label for="past-order">Vos commandes</label>
+<h1>Liste de vos commandes</h1>
+<form action="index.php?route=user-past-orders" method="POST">
+ <label for="past-order">Vos commandes</label>
+ <?php var_dump($data) ?>
+<!--ajouter phph pour $data = orders array et geneerer liste-->
+      <select class="" name="past-orders" id="">
+              <option value=""></option>
+              <option value=""></option>
+              <option value=""></option>
+              <option value=""></option>
+     
+ </select>
     
-          <select class="" name="past-orders" id="">
-                  <option value=""></option>
-                  <option value=""></option>
-                  <option value=""></option>
-                  <option value=""></option>
-         
-     </select>
-        
-        <!--a voir pour modidier l'affichage le la liste de commande-->
-        
-    </form>
+    <!--a voir pour modidier l'affichage le la liste de commande-->
     
-    
-</div>
+</form>
