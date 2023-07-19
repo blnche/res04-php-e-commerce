@@ -22,7 +22,9 @@ class OrderManager extends AbstractManager {
 		];
 		$query->execute($parameters);
 		$results = $query->fetchAll(PDO::FETCH_ASSOC);
+		//peut etre ajouter une boucle pour passer dans array les infos de chaque objet ???
 		$orders = Order::createInstancesArrFromAssocArr($results);
+		
 		return $orders;
 	}
 	public function getOrdersByAddress_id(int $address_id) : array {

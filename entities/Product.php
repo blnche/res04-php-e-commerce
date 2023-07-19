@@ -7,16 +7,16 @@
         private string $description;
         private int $price;
         private string $image;
-        private Product_Category $category;
+        private int $category_id;
         
-        public function __construct(string $name, string $description, int $price, string $image, Product_Category $category)
+        public function __construct(string $name, string $description, int $price, string $image, int $category_id)
         {
             $this->id = null;
             $this->name = $name;
             $this->description = $description;
             $this->price = $price;
             $this->image = $image;
-            $this->category = $category;
+            $this->category_id = $category_id;
         }
         
         public function getId () : ?int
@@ -64,13 +64,13 @@
             $this->image = $image;
         }
         
-        public function getCategory () : Product_Category
+        public function getCategory_id () : int
         {
-            return $this->category;
+            return $this->category_id;
         }
-        public function setCategory (Product_Category $category) : void
+        public function setCategory_id (int $category_id) : void
         {
-            $this->category = $category;
+            $this->category_id = $category_id;
         }
         
     }
