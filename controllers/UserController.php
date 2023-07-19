@@ -19,9 +19,7 @@ class UserController extends AbstractController
             $user = $this->userManager->getUserByEmail($_POST["email"]);
             if (password_verify($_POST["password"], $user->getPassword())) {
                 $_SESSION['user_id'] = $user->getId();
-                var_dump($_SESSION["user_id"]);
-                die;
-                /*header("Location:index.php?route=order-products");*/
+                header("Location:index.php?route=order-products");
             } else {
                 $allUsers = $this->userManager->getAllUsers();
                 $this->render('user/login', ["users" => $allUsers]);
