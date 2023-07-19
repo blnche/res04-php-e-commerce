@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    
     $dbName = "blanchepeltier_e-commerce";
     $port = "3306";
     $host = "db.3wa.io";
@@ -19,6 +21,7 @@
     require "managers/ProductManager.php";
     
     require "controllers/AbstractController.php";
+    require "controllers/OrderController.php";
     require "controllers/Product_CategoryController.php";
     require "controllers/ProductController.php";
     require "controllers/UserController.php";

@@ -17,7 +17,7 @@
         {
             if(isset($_SESSION["user_id"]))
             {
-                $past_orders = $this->orderManager->getOrdersByUser_id();
+                $past_orders = $this->orderManager->getOrdersByUser_id($_SESSION["user_id"]);
                 $this->render("user/read-past-orders", $past_orders);
             }
             else
