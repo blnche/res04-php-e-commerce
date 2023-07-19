@@ -66,7 +66,7 @@
         
         public function getCategory () : Product_Category
         {
-            return $this-categorye;
+            return $this->category;
         }
         public function setCategory (Product_Category $category) : void
         {

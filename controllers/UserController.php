@@ -5,13 +5,12 @@
 class UserController extends AbstractController
 {
     private UserManager $userManager;
-    private CategoryManager $categoryManager;
+    
 
     public function __construct()
     {
-        global $db;
-        $this->userManager = new UserManager($db);
-        $this->categoryManager = new CategoryManager($db);
+        $this->userManager = new UserManager();
+       
     }
 
     public function login()
@@ -58,7 +57,5 @@ class UserController extends AbstractController
             exit();
         }
     }
-    public function account()
-    {
-    }
+    
 }

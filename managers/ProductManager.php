@@ -4,12 +4,6 @@
     
     class ProductManager extends AbstractManager
     {
-        private UserManager $manager;
-        
-        public function __construct (UserManager $manager)
-        {
-            $this->manager = $manager;
-        }
         
         public function getAllProducts () : array
         {
@@ -24,12 +18,13 @@
             foreach($products as $product)
             {
                 $new_product = new Product (
-                    $result["name"],
-                    $result["description"],
-                    $result["price"],
-                    $result["image"],
-                    $result["category"]
+                    $product["name"],
+                    $product["description"],
+                    $product["price"],
+                    $product["image"],
+                    $product["category"]
                 );
+                $new_product->setId($product["id"]);
                 
                 $products_list[] = $new_product;
             }
@@ -55,12 +50,13 @@
             foreach($products as $product)
             {
                 $new_product = new Product (
-                    $result["name"],
-                    $result["description"],
-                    $result["price"],
-                    $result["image"],
-                    $result["category"]
+                    $product["name"],
+                    $product["description"],
+                    $product["price"],
+                    $product["image"],
+                    $product["category"]
                 );
+                $new_product->setId($product["id"]);
                 
                 $products_list[] = $new_product;
             }

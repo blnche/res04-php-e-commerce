@@ -2,16 +2,10 @@
 
     require_once "AbstractManager.php";
     
-    class ProductManager extends AbstractManager
+    class Product_CategoryManager extends AbstractManager
     {
-        private UserManager $manager;
         
-        public function __construct (UserManager $manager)
-        {
-            $this->manager = $manager;
-        }
-        
-        public function getAllProductCategories () : array
+        public function getAllProductsCategories() : array
         {
             $query = $this->db->prepare("
                 SELECT *
@@ -20,10 +14,20 @@
             $query->execute();
             $all_products_categories = $query->fetchAll(PDO::FETCH_ASSOC);
             
-            return $all_products_categories;
+            foreach($all_products_categories as $product_category)
+            {
+                $new_product_category = new Product_Category(
+                     $product_category["name"]
+                );   
+                $new_product_category->setId($product_category["id"]);
+                
+                $list_product_category[] = $new_product_category;
+            }
+            
+            return $list_product_category;
         }
         
-        public function getProductCategoryById (int $id) : Product_Category
+        public function getProductCategoryById(int $id) : Product_Category
         {
             $query = $this->db->prepare("
                 SELECT *
@@ -41,6 +45,8 @@
             $product_category = new Product_Category (
                 $result["name"]
             );
+            
+            $product_category->setId($result["id"]);
             
             return $product_category;
         }
