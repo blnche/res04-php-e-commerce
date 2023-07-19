@@ -1,0 +1,120 @@
+<!--
+$data :: ARRAY
+// $data keys -> 'categories' 'products' (?)'category_selected'
+// (?) <=> peut être null
+-->
+
+<section class="container" aria-labelledby="title-products">
+   <h2 id="title-products">Produits</h2>
+   <aside>
+      <h3>Catégories</h3>
+      <nav> <!-- choix de la catgorie de produit -->
+         <ul>
+            <li><a href="?route=products&category_id=">Toutes</a></li>
+            <?php foreach ($data['categories'] as $cat) { ?>
+               <li>
+                  <?php if ($cat->getId() === $data['category_selected']->getId()) {
+                     $select = 'select';
+                  } else {
+                     $select = '';
+                  } ?>
+                  <a href="?route=products&category_id=<?= $cat->getId(); ?>" class="<?= $select ?>">
+                     <?= $cat->getName(); ?>
+                  </a>
+               </li>
+            <?php } ?>
+         </ul>
+      </nav>
+   </aside>
+   <section aria-labelledby="title-cat">
+      <h3 id="title-cat">dans <?= $data['category_selected']->getName() ?? 'Tous' ?></h3>
+      <div id="products">
+         <ul>
+            <?php foreach ($data['products'] as $product) { ?>
+               <li>
+                  <article class="product-card">
+                     <div>
+                        <img src="<?= $product->getImage(); ?>" alt="image de <?= $product->getName(); ?>">
+                        <h3><?= $product->getName(); ?></h3>
+                        <p class="">
+                           <?= $product->getDescription(); ?>
+                        </p>
+                        <b class="price">
+                           <?= $product->getPrice(); ?>
+                        </b>
+                     </div>
+                     <input type="checkbox" name="<?= $product->getName() ?>" id="?= $product->getId(); ?>">
+                  </article>
+               </li>
+            <?php } ?>
+         </ul>
+      </div>
+   </section>
+
+   <!-- order creation form -->
+   <form action="?route=order-create" method="POST" aria-label="" id="order-create">
+      <section aria-labelledby="title-cart">
+         <h3 id="title-cart">Panier</h3>
+         <ul id="cart">
+
+         </ul>
+      </section>
+      <div>
+         <h3>Adresse de livraison</h3>
+         <div class="d-flex gap-2">
+            <label for="address_code_postal" class="visually-hidden">Code postal</label>
+            <input class="form-control" type="number" name="address_code_postal" value="" placeholder="Code postal" id="address_code_postal">
+            <label for="address_pays" class="visually-hidden">Pays</label>
+            <input class="form-control" type="text" name="address_pays" value="" placeholder="France" id="address_pays">
+         </div>
+         <label for="address_details"></label>
+         <textarea class="form-control" type="text" name="address_details" value="" placeholder="Ex: 1 rue Dufour" id="address_details">
+      </div>
+      <button class="btn btn-primary" type="submit">Valider la commande</button>
+   </form>
+</section>
+
+<!-- à mettre dans le js -->
+<script>
+   const products = document.getElementById('products');
+   const productsCheckboxes = products.querySelectorAll('input[type="checkbox"]');
+   const cart = document.getElementById('cart');
+   const createOrderForm = document.querySelector('form#order-create');
+   const productsInCart = [];
+
+   function populateCart(productsInCart) {
+      productsInCart.forEach(product => {
+         const li = document.createElement('li');
+         li.innerText = product.name;
+         cart.appendChild(li);
+         const hiddenFormValue = document.createElement('input');
+         // met chaque product_id dans le meme tableau itérable coté back dans $_POST['products_ids']
+         hiddenFormValue.setAttribute('type', 'hidden');
+         hiddenFormValue.setAttribute('name', 'products_ids[]');
+         hiddenFormValue.setAttribute('value', product.id);
+      });
+   }
+
+   productsCheckboxes.forEach(productCheck => {
+      productCheck.addEventListener('click', (e) => {
+         if (e.target.checked === false) {
+            e.target.checked = true;
+            const product = {
+               name: e.target.getAttribute('name'),
+               id: e.target.getAttribute('id')
+            };
+            productsInCart.push(product);
+            populateCart(productsInCart);
+         } else {
+            e.target.checked = false;
+            const product = {
+               name: e.target.getAttribute('name'),
+               id: e.target.getAttribute('id')
+            };
+            let index = productsInCart.indexOf(product);
+            productsInCart.splice(index, 1);
+            populateCart(productsInCart);
+         }
+      })
+   })
+</script>
