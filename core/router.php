@@ -32,5 +32,6 @@ if(isset($_GET["route"])){
 }
 else
 {
-    echo "404 : Page Not Found";
+    $userController->login();
+   /* echo "404 : Page Not Found";*/
 }

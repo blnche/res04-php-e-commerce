@@ -1,6 +1,7 @@
-<h1>Créer un utilisateur</h1>
-<form action="index.php?route=user-create" method="POST">
-    <!--modifier la route..-->
+<h1>Créer un compte</h1>
+<form action="index.php?route=user-register" method="POST">
+    
+    <input type="hidden" name="formName" value="user-register"/>
 
     <label for="username">Nom d'utilisateur</label>
     <input type="text" id="username" name="username">
@@ -14,5 +15,5 @@
     <label for="confirm-password">Confirmer votre Mot de passe</label>
     <input type="password" id="confirm-password" name="confirm-password">
 
-    <input type="submit" value="Créer">
+    <input type="submit" value="Créer votre compte">
 </form>
