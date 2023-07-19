@@ -47,7 +47,7 @@
                     $orderManager->addOrder_ProductRelation($order_updated->getId(),$product_id);
                 }
             }
-            header("Location:index.php?route=order-products")
+            header("Location:index.php?route=order-products");
             exit();
         }
     }
