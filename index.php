@@ -25,6 +25,5 @@
     
     
     $userController = new UserController();
+    $product_CategoryController = new Product_CategoryController();
     require "core/router.php";
-    
-?>
