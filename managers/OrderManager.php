@@ -54,4 +54,30 @@ class OrderManager extends AbstractManager {
 		$orders = Order::createInstancesArrFromAssocArr($results);
 		return $orders;
 	}
+	public function addOrder(Order $order) : Order {
+		$query = $this->db->prepare('
+			INSERT INTO orders (user_id, order_date, address_id)
+			VALUES (:user_id, :order_date, :address_id)
+		');
+		$parameters = [
+				'user_id' => $order-getUser_id(),
+				'order_date' => $order->getOrder_date(),
+				'address_id' => $order->getAddress_id()
+			];
+		$query->execute($parameters);
+		$order = $this->getLastOrdersSortedByOrder_date(1)[0]; //récupère le dernier order effectué, donc celui quon vient de faire
+		return $order;
+	}
+	public function addOrder_ProductRelation(int $order_id, int $product_id) {
+		$query = $this->db->prepare('
+			INSERT INTO order_products (order_id, product_id)
+			VALUES (:order_id, :product_id)
+		');
+		$parameters = [
+				'order_id' => $order_id,
+				'product_id' => $product_id
+			];
+		$query->execute($parameters);
+	}
+	
 }

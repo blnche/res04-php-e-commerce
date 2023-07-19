@@ -1,3 +1,7 @@
+// ce js est destiné à la route order-products
+// il faudra probablement vérifier dans le js que l'on est bien sur la bonne page
+// avant d'essayer de récupérer des éléments du DOM sur la mauvaise page
+
 let products
 let productsCheckboxes;
 let cart;
