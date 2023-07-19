@@ -25,6 +25,7 @@
     
     
     $userController = new UserController();
+    $orderController = new OrderController();
     require "core/router.php";
     
 ?>
