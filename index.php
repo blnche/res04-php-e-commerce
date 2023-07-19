@@ -19,12 +19,14 @@
     require "managers/OrderManager.php";
     require "managers/Product_CategoryManager.php";
     require "managers/ProductManager.php";
+    require "managers/AddressManager.php";
     
     require "controllers/AbstractController.php";
     require "controllers/OrderController.php";
     require "controllers/Product_CategoryController.php";
     require "controllers/ProductController.php";
     require "controllers/UserController.php";
+    require "controllers/AddressController.php";
     
     
     $userController = new UserController();
