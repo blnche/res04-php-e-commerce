@@ -28,6 +28,7 @@
     
     
     $userController = new UserController();
+    $product_CategoryController = new Product_CategoryController();
     $orderController = new OrderController();
     require "core/router.php";
     

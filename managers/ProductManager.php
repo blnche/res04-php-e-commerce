@@ -22,7 +22,7 @@
                     $product["description"],
                     $product["price"],
                     $product["image"],
-                    $product["category"]
+                    $product["product_category_id"]
                 );
                 $new_product->setId($product["id"]);
                 
@@ -37,11 +37,11 @@
             $query = $this->db->prepare("
                 SELECT *
                 FROM products
-                WHERE product_category_id = :category-id
+                WHERE product_category_id = :category_id
             ");
             $parameters = 
             [
-                "category-id" => $category_id    
+                "category_id" => $category_id    
             ];
             $query->execute($parameters);
             
@@ -54,7 +54,7 @@
                     $product["description"],
                     $product["price"],
                     $product["image"],
-                    $product["category"]
+                    $product["product_category_id"]
                 );
                 $new_product->setId($product["id"]);
                 

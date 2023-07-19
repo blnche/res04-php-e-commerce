@@ -13,13 +13,17 @@ if(isset($_GET["route"])){
     {
         $userController->logout();
     }
+    else if($route === "order-products" )
+    {
+        $product_CategoryController->productCategoriesIndex();
+    }
     else if($route === "user-past-orders" )
     {
         $orderController->getOrdersByUser_id();
     }
-    else if($route === "")
+    else if($route === "order-create")
     {
-        
+        $orderController->create();
     }
     else if($route === "")
     {
