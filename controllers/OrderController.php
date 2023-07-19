@@ -23,7 +23,32 @@
             else
             {
                 header("Location:index.php?route=user-login");
+                exit();
             }
+        }
+        public function create() {
+            if (isset($_POST)) {
+                $address = new Address(
+                        $_POST['address_pays'],
+                        $_POST['address_details'],
+                        $_POST['address_code_postal']
+                    );
+                $address_updated = $addressManager->createAddress($address); // à ajouter au addressManager (qui doit retourner un object Address avec l'id)
+                $currentDate = date("Y-m-d H:i:s", time());
+                $order = new Order(
+                        $_SESSION['user_id'],
+                        $current_date,
+                        $address_updated->getId()
+                    );
+                $order_updated = $orderManager->addOrder($order);
+                // ajoute les informations nécessaires à la table de liaison entre order et products           
+                $products_ids = $_POST['products_ids'];
+                foreach($products_ids as $product_id) {
+                    $orderManager->addOrder_ProductRelation($order_updated->getId(),$product_id);
+                }
+            }
+            header("Location:index.php?route=order-products")
+            exit();
         }
     }
 ?>
